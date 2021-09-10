@@ -108,6 +108,8 @@ if ( ! empty( $_ENV['PANTHEON_ENVIRONMENT'] ) ) {
 		break;
 	  }
   }
+  
+  define('COOKIE_DOMAIN', $_SERVER['HTTP_HOST'] );
 
 /* That's all, stop editing! Happy Pressing. */
 
