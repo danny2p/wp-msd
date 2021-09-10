@@ -100,7 +100,7 @@ if ( ! empty( $_ENV['PANTHEON_ENVIRONMENT'] ) ) {
 		define( 'DOMAIN_CURRENT_SITE', 'test.wpmsd.site' );
 		break;
 	  case 'dev':
-		define( 'DOMAIN_CURRENT_SITE', 'dev.wpmsd.site' );
+		define( 'DOMAIN_CURRENT_SITE', 'dev-dp-wp-msd.pantheonsite.io' );
 		break;
 	  default:
 		# Catch-all to accommodate default naming for multi-dev environments.
@@ -108,7 +108,7 @@ if ( ! empty( $_ENV['PANTHEON_ENVIRONMENT'] ) ) {
 		break;
 	  }
   }
-  
+
   define('COOKIE_DOMAIN', $_SERVER['HTTP_HOST'] );
 
 /* That's all, stop editing! Happy Pressing. */
