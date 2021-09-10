@@ -79,10 +79,35 @@ define( 'WP_ALLOW_MULTISITE', true );
 define( 'MULTISITE', true );
 define( 'SUBDOMAIN_INSTALL', true );
 $base = '/';
-define( 'DOMAIN_CURRENT_SITE', 'dev-dp-wp-msd.pantheonsite.io' );
+#define( 'DOMAIN_CURRENT_SITE', 'dev-dp-wp-msd.pantheonsite.io' );
+
 define( 'PATH_CURRENT_SITE', '/' );
 define( 'SITE_ID_CURRENT_SITE', 1 );
 define( 'BLOG_ID_CURRENT_SITE', 1 );
+
+/**
+ * Define DOMAIN_CURRENT_SITE conditionally.
+ */
+if ( ! empty( $_ENV['PANTHEON_ENVIRONMENT'] ) ) {
+	switch( $_ENV['PANTHEON_ENVIRONMENT'] ) {
+	  case 'live':
+		// Value should be the primary domain for the Site Network.
+		define( 'DOMAIN_CURRENT_SITE', 'wpmsd.site' );
+		// Once you map a domain to Live, you can change DOMAIN_CURRENT_SITE
+		// define( 'DOMAIN_CURRENT_SITE', 'example-network.com' );
+		break;
+	  case 'test':
+		define( 'DOMAIN_CURRENT_SITE', 'test.wpmsd.site' );
+		break;
+	  case 'dev':
+		define( 'DOMAIN_CURRENT_SITE', 'dev.wpmsd.site' );
+		break;
+	  default:
+		# Catch-all to accommodate default naming for multi-dev environments.
+		define( 'DOMAIN_CURRENT_SITE', $_ENV['PANTHEON_ENVIRONMENT'] . '-' . $_ENV['PANTHEON_SITE_NAME'] . '.pantheonsite.io' );
+		break;
+	  }
+  }
 
 /* That's all, stop editing! Happy Pressing. */
 
